@@ -1,0 +1,91 @@
+<div class="box-body">
+
+  <table id="datatable" class="table table-bordered table-striped">
+
+    <thead>
+
+      <tr>
+
+        <th>Tên</th>
+
+        <th>Email</th>
+
+        <th>Quyền</th>
+
+        <th>Ngày tham gia</th>
+
+        <th>Hành động</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr>
+
+        <td class="col col-md-2">キュラソー</td>
+        
+        <td>admin</td>
+        
+        <td>2021-06-07 00:28:08</td>
+        
+        <td>
+          <button class="btn btn-danger" disabled> Cập nhật</button>
+        </td>
+        
+      </tr>
+      
+    </tbody>
+
+    </tfoot>
+
+  </table>
+
+</div>
+
+<!-- /.box-body -->
+
+<script>
+  function UpdateUser() {
+
+    var userid = $("#userid").val();
+
+    var role = $("#role").val();
+
+    alert(userid + role);
+
+    $.ajax({
+
+      type: "POST",
+
+      url: "/api/v1/ajax.php",
+
+      data: {
+
+        action: 'UpdateUser',
+
+        userid: userid,
+
+        role: role
+
+      },
+
+      dataType: "JSON",
+
+      success: function(data) {
+
+        // $("#message").html(data);
+        alert(userid + role)
+      },
+      error: function(err) {
+        alert("ERR " + err.toString());
+      }
+    });
+
+    var delayInMilliseconds = 1000; //1 second
+    setTimeout(function() {
+      window.location.href = "user";
+    }, delayInMilliseconds);
+  }
+</script>
